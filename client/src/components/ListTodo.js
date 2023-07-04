@@ -70,6 +70,14 @@ const ListTodo = (props) => {
                   >
                     Delete
                   </button>
+
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => props.deleteTodo(todos.todo_id)}
+                  >
+                    Delete
+                  </button>
+                 
                  
                 </td>
               </tr>
