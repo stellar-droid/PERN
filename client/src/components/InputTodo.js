@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import ListTodo from "./ListTodo";
+import './css/ListTodo.css';
 // import ListTodo from './ListTodo';
 
 const InputTodo = () => {
   const [todos, setTodos] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [todosPerPage] = useState(5);
+
+ //getting todos 
   const getTodos = async () => {
     try {
       const response = await fetch("http://10.10.10.145:3000/todos");
@@ -20,6 +23,8 @@ const InputTodo = () => {
       console.error(error.message);
     }
   };
+
+  //delete todo function
 
   const deleteTodo = async (id) => {
     console.log("id")
@@ -37,6 +42,7 @@ const InputTodo = () => {
       }
     };
     }
+    
     
 
   useEffect(() => {
@@ -59,6 +65,8 @@ const InputTodo = () => {
   const onSubmitForm = async (e) => {
     // console.log("event",e);
     e.preventDefault();
+
+    //Prevent empty todo descrition
     if (description.trim() === "") {
       alert("Please enter a description");
       return;
@@ -104,10 +112,7 @@ const InputTodo = () => {
           {" "}
           Add
         </button>
-        <button className=" btn-success"  onClick={onSubmitForm}>
-          {" "}
-          Add
-        </button>
+        
       </form>
       {todos.length > 0 && <ListTodo todos={currentTodos} deleteTodo={deleteTodo} />}
 
@@ -130,4 +135,30 @@ const Pagination = ({ todosPerPage, totalTodos, paginate }) => {
 
   for (let i = 1; i <= Math.ceil(totalTodos / todosPerPage); i++) {
     pageNumbers.push(i);
-  }}
+  }
+    
+  return (
+    <nav className="nav">
+      <ul className="pagination">
+        {pageNumbers.map((number) => (
+          <li key={number} className="page-item">
+            <a
+              onClick={() => paginate(number)}
+              href="#!"
+              className="page-link"
+            >
+              {number}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+};
+
+
+
+
+
+
+  

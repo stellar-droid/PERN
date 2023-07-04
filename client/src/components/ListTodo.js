@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import EditTodo from "./EditTodo";
-
+import './css/ListTodo.css';
 const ListTodo = (props) => {
   const [todos, setTodos] = useState([]);
   //delete todo function
@@ -19,7 +19,7 @@ const ListTodo = (props) => {
 
   const getTodos = async () => {
     try {
-      const response = await fetch("10.10.10.145:3000/todos/");
+      const response = await fetch("http://10.10.10.145:3000/todos");
       const jsonData = await response.json();
       // if(todos.length !== jsonData.length)
       // {
@@ -38,15 +38,17 @@ const ListTodo = (props) => {
 
   return (
     <>
+      <div className="container">
+
       <table className="table mt-5 text-center">
-        <thead>
-          <tr>
+        <thead className="tablehead">
+          <tr className="tablerow">
             <th>Description</th>
             <th>Edit</th>
             <th>Delete</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="tablebody">
           {/* <tr>
         <td>John</td>
         <td>Doe</td>
@@ -54,7 +56,7 @@ const ListTodo = (props) => {
       </tr> */}
           {props.todos.length === 0 ? (
             <div style={{width:'100%',textalign:'center'}}>No data</div>
-          ) : (
+            ) : (
             props.todos.map((todos) => (
               <tr key={todos.todo_id}>
                 <td>{todos.description}</td>
@@ -67,24 +69,19 @@ const ListTodo = (props) => {
                   <button
                     className="btn btn-danger"
                     onClick={() => props.deleteTodo(todos.todo_id)}
-                  >
+                    >
                     Delete
                   </button>
 
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => props.deleteTodo(todos.todo_id)}
-                  >
-                    Delete
-                  </button>
-                 
+                  
                  
                 </td>
               </tr>
             ))
-          )}
+            )}
         </tbody>
       </table>
+            </div>
     </>
   );
 };

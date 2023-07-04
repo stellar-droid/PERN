@@ -1,0 +1,30 @@
+.table{
+    border: 2px solid #cccccc;
+
+}
+
+
+.tablehead{
+
+    border: 2px solid #cccccc;
+
+}
+
+.tablehead:hover{
+    background-color: #cccccc;
+    color: white;
+}
+
+.container{
+    
+    height: 60px;
+    width: 100%;
+    
+}
+.nav{
+    padding-top: 320px;
+}
+
+body{
+    background-color: lightblue;
+}
