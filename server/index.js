@@ -33,7 +33,7 @@ app.get("/todos", async(req, res) => {
 
     try {
 
-        const newTodo = await pool.query(" SELECT * FROM todo ; " );   
+        const newTodo = await pool.query(" SELECT * FROM todo order by todo_id ASC; " );   
         res.json(newTodo.rows);
         // console.log(req.body);
         
