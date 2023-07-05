@@ -35,7 +35,7 @@ app.get("/todos", async(req, res) => {
 
         const newTodo = await pool.query(" SELECT * FROM todo order by todo_id ASC; " );   
         res.json(newTodo.rows);
-        // console.log(req.body);
+        console.log(req.body);
         
     } 
 
