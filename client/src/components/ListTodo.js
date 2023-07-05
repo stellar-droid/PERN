@@ -53,7 +53,7 @@ const ListTodo = (props) => {
         <td>John</td>
         <td>Doe</td>
         <td>john@example.com</td>
-      </tr> */}
+        </tr> */}
           {props.todos.length === 0 ? (
             <div style={{width:'100%',textalign:'center'}}>No data</div>
             ) : (
