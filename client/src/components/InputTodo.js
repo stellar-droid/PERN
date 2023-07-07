@@ -86,6 +86,10 @@ const InputTodo = () => {
         getTodos();
       }
       setDescription("");
+      setSuccessMessage('Todo added successfully!');
+        setTimeout(() => {
+          setSuccessMessage('');
+        }, 3000);
     } catch (error) {
       console.log(error.message);
     }
@@ -93,14 +97,17 @@ const InputTodo = () => {
   };
 
   const [description, setDescription] = useState("");
+  const [successMessage, setSuccessMessage] = useState('');
   const settingdescription = (e) => {
     setDescription(e.target.value);
     
   };
+
   
   return (
     <>
       <h1 className="text-center mt-5">PERN TODO</h1>
+      {successMessage && <div className='success-message'>{successMessage}</div>}
       <form className="d-flex mt-5" >
         <input
           type="text"
