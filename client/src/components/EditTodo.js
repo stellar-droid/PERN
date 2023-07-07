@@ -63,9 +63,9 @@ const EditTodo = ({todos}) => {
       
       <div className="modal-footer">
 
-      <button type="button" className="btn btn-warning f-left p-2 d-flex" data-dismiss="modal" onClick={ async()=> updateDescription()}>Edit</button>
+      <button type="button" className="btn btn-warning f-left p-2 d-flex" data-dismiss="modal" onClick={ async()=> updateDescription()}>Save</button>
 
-        <button type="button" className="btn btn-danger " data-dismiss="modal" onClick={() => setDescription(todos.description)}>Close</button>
+        
       </div>
 
     </div>
