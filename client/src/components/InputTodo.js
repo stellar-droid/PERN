@@ -7,11 +7,13 @@ const InputTodo = () => {
   const [todos, setTodos] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [todosPerPage] = useState(5);
+  const [successMessage, setSuccessMessage] = useState('');
+  const todosurl = `http://10.10.10.145:3000`; 
 
  //getting todos 
   const getTodos = async () => {
     try {
-      const response = await fetch("http://10.10.10.145:3000/todos");
+      const response = await fetch(`${todosurl}/todos`);
       const jsonData = await response.json();
       // if(todos.length !== jsonData.length)
       // {
@@ -32,13 +34,13 @@ const InputTodo = () => {
     const confirmed = window.confirm("Are you sure you want to delete this todo?");
     if(confirmed){
       try {
-        const deleteTodo = await fetch(`http://10.10.10.145:3000/todos/${id}`, {
+        const deleteTodo = await fetch(`${todosurl}/todos/${id}`, {
           method: "DELETE",
         });
         setTodos(todos.filter((todo) => todo.todo_id !== id));
         console.log(deleteTodo);
       } catch (error) {
-        console.error(error.message);
+        console.error(error.message); 
       }
     };
     }
@@ -75,7 +77,7 @@ const InputTodo = () => {
 
     try {
       const body = { description };
-      const response = await fetch("http://10.10.10.145:3000/todos", {
+      const response = await fetch(`${todosurl}/todos`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -84,12 +86,12 @@ const InputTodo = () => {
       // window.location = "/";
       if (response.status === 200) {
         getTodos();
-      }
-      setDescription("");
-      setSuccessMessage('Todo added successfully!');
+        setSuccessMessage('Todo added successfully!');
         setTimeout(() => {
           setSuccessMessage('');
         }, 3000);
+      }
+      setDescription("");
     } catch (error) {
       console.log(error.message);
     }
@@ -97,12 +99,10 @@ const InputTodo = () => {
   };
 
   const [description, setDescription] = useState("");
-  const [successMessage, setSuccessMessage] = useState('');
   const settingdescription = (e) => {
     setDescription(e.target.value);
     
   };
-
   
   return (
     <>

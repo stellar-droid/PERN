@@ -4,13 +4,49 @@ const mysql = require('mysql');
 const cors = require('cors');
 const pool = require('./db1');
 const e = require('express');
+// const bcrypt = require('bcrypt'); 
 
     //////middleware
 app.use(cors()); // allows us to parse json
 app.use(express.json()); // allows us to parse json  request.body
  
 ////ROUTES
+ 
+// User registration endpoint
+// app.post('/register', async (req, res) => {
+//     try {
+//       const { username, password } = req.body;
   
+//       // Check if username is already taken
+//       const existingUser = await pool.query('SELECT * FROM users WHERE username = ?', [username]);
+//       if (existingUser.length > 0) {
+//         return res.status(400).json({ message: 'Username already taken' });
+//       }
+  
+//       // Hash the password
+//       const saltRounds = 10;
+//       const hashedPassword = await bcrypt.hash(password, saltRounds);
+  
+//       // Store the user credentials in the database
+//       const newUser = await pool.query('INSERT INTO users (username, password) VALUES (?, ?)', [username, hashedPassword]);
+//       res.json({ message: 'User registered successfully' });
+//     } catch (error) {
+//       console.log(error.message);
+//       res.status(500).json({ message: 'Internal server error' });
+//     }
+//   });
+
+function isAuth(req, res, next) {
+    const auth = req.headers.authorization;
+    if (auth === 'password') {
+      next();
+    } else {
+      res.status(401);
+      res.send('Access forbidden');
+    }
+}
+
+
 //create a todo
 app.post("/todos", async(req, res) => {  
 

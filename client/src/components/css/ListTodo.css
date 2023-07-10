@@ -36,7 +36,7 @@ th,td{
 
 }
 
-.tablehead:hover{
+.tablehead{
     background-color: palevioletred;
     color: white;
 }

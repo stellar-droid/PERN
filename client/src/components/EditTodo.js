@@ -3,7 +3,8 @@ import {useState} from 'react';
 const EditTodo = ({todos}) => {
     
     const[description, setDescription] = useState(todos.description);
-
+    const todosurl = `http://10.10.10.145:3000`; 
+    
      const settingDescription = (e) => {
         setDescription(e.target.value)
      }
@@ -22,7 +23,7 @@ const EditTodo = ({todos}) => {
 
             try {
                 const body = {description};
-                const response = await fetch(`http://10.10.10.145:3000/todos/${todos.todo_id}`,{
+                const response = await fetch(`${todosurl}/${todos.todo_id}`,{
                     method: "PUT",
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify(body)

@@ -3,6 +3,8 @@ import EditTodo from "./EditTodo";
 import './css/ListTodo.css';
 const ListTodo = (props) => {
   const [todos, setTodos] = useState([]);
+  const todosurl = `http://10.10.10.145:3000`; 
+
   //delete todo function
 //   const deleteTodo = async (id) => {
 //     console.log("id")
@@ -19,7 +21,11 @@ const ListTodo = (props) => {
 
   const getTodos = async () => {
     try {
-      const response = await fetch("http://10.10.10.145:3000/todos");
+      const response = await fetch(`${todosurl}/todos`,{
+        method: "GET", 
+        headers: { 'Content-Type': 'application/json', 
+          authorization: "Bearer password"}
+      });
       const jsonData = await response.json();
       // if(todos.length !== jsonData.length)
       // {
